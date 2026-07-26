@@ -1,0 +1,15 @@
+:root {
+    --compia-cor-principal: #172554;
+    --compia-cor-destaque: #f59e0b;
+    --compia-cor-texto: #1f2937;
+    --compia-cor-fundo: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: var(--compia-cor-texto);
+     background-color: var(--compia-cor-fundo);
+}
