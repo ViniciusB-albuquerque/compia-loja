@@ -13,3 +13,197 @@ body {
     color: var(--compia-cor-texto);
      background-color: var(--compia-cor-fundo);
 }
+
+/* ==================================================
+   Catálogo de produtos
+   ================================================== */
+
+/* Remove a barra lateral de blog somente da loja. */
+.post-type-archive-product #secondary {
+    display: none;
+}
+
+/* Faz o conteúdo da loja ocupar toda a largura disponível. */
+.post-type-archive-product #primary {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+}
+
+/* Título da página. */
+.post-type-archive-product .woocommerce-products-header {
+    margin-bottom: 2rem;
+}
+
+.post-type-archive-product .woocommerce-products-header__title {
+    color: var(--compia-cor-principal);
+    font-weight: 700;
+}
+
+/* Ordenação e quantidade de resultados. */
+.post-type-archive-product .storefront-sorting {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.post-type-archive-product .woocommerce-ordering,
+.post-type-archive-product .woocommerce-result-count {
+    float: none;
+    margin: 0;
+}
+
+/* Grade dos produtos. */
+.post-type-archive-product ul.products {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    margin: 0;
+}
+
+/* Remove os ajustes antigos de layout por float. */
+.post-type-archive-product ul.products::before,
+.post-type-archive-product ul.products::after {
+    display: none;
+}
+
+/* Card de cada produto. */
+.post-type-archive-product ul.products li.product {
+    float: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+
+    text-align: left;
+
+    box-shadow: 0 0.25rem 0.75rem rgb(15 23 42 / 8%);
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.post-type-archive-product ul.products li.product:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 0.75rem 1.5rem rgb(15 23 42 / 14%);
+}
+
+/* Faz a área do produto ocupar o card. */
+.post-type-archive-product
+ul.products
+li.product
+.woocommerce-LoopProduct-link {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Padroniza o espaço reservado para todas as capas. */
+.post-type-archive-product ul.products li.product img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    margin: 0 0 1rem;
+
+    object-fit: contain;
+    object-position: center;
+
+    background-color: #f8fafc;
+    border-radius: 0.5rem;
+}
+
+/* Título do livro. */
+.post-type-archive-product
+ul.products
+li.product
+.woocommerce-loop-product__title {
+    min-height: 2.8em;
+    margin: 0 0 0.75rem;
+
+    color: var(--compia-cor-texto);
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* Preço. */
+.post-type-archive-product ul.products li.product .price {
+    margin-top: auto;
+    margin-bottom: 0;
+
+    color: var(--compia-cor-principal);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+/* Botão de compra. */
+.post-type-archive-product ul.products li.product .button {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+
+    color: #ffffff;
+    background-color: var(--compia-cor-principal);
+    border-radius: 0.5rem;
+
+    text-align: center;
+    font-weight: 600;
+}
+
+.post-type-archive-product ul.products li.product .button:hover,
+.post-type-archive-product ul.products li.product .button:focus {
+    color: #ffffff;
+    background-color: var(--compia-cor-destaque);
+}
+
+/*
+ * O Storefront mostra ordenação e quantidade de resultados
+ * novamente depois da lista. Esta regra esconde a repetição.
+ */
+.post-type-archive-product ul.products + .storefront-sorting {
+    display: none;
+}
+
+/* Tablet. */
+@media (max-width: 900px) {
+    .post-type-archive-product ul.products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Celular. */
+@media (max-width: 600px) {
+    .post-type-archive-product .storefront-sorting {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .post-type-archive-product .woocommerce-ordering {
+        width: 100%;
+    }
+
+    .post-type-archive-product .woocommerce-ordering select {
+        width: 100%;
+    }
+
+    .post-type-archive-product ul.products {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding-bottom: 4.5rem;
+    }
+}
