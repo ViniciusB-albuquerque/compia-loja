@@ -1,8 +1,11 @@
 :root {
     --compia-cor-principal: #172554;
+    --compia-cor-principal-rgb: 23, 37, 84;
+    --compia-cor-principal-escuro: #4338ca;
     --compia-cor-destaque: #f59e0b;
     --compia-cor-texto: #1f2937;
     --compia-cor-fundo: #ffffff;
+    --compia-cor-fundo-suave: #f8fafc;
 }
 
 * {
@@ -19,29 +22,44 @@ body {
    ================================================== */
 
 /* Remove a barra lateral de blog somente da loja. */
-.post-type-archive-product #secondary {
+.compia-catalogo #secondary {
     display: none;
 }
 
 /* Faz o conteúdo da loja ocupar toda a largura disponível. */
-.post-type-archive-product #primary {
+.compia-catalogo #primary {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+}
+
+/*
+ * Minha conta: mesma remoção de sidebar da loja. A classe nativa
+ * .woocommerce-account cobre todas as subpáginas (painel, pedidos, downloads,
+ * endereços, detalhes), pois são endpoints da mesma página de conta.
+ */
+.woocommerce-account #secondary {
+    display: none;
+}
+
+.woocommerce-account #primary {
     float: none;
     width: 100%;
     margin-right: 0;
 }
 
 /* Título da página. */
-.post-type-archive-product .woocommerce-products-header {
+.compia-catalogo .woocommerce-products-header {
     margin-bottom: 2rem;
 }
 
-.post-type-archive-product .woocommerce-products-header__title {
+.compia-catalogo .woocommerce-products-header__title {
     color: var(--compia-cor-principal);
     font-weight: 700;
 }
 
 /* Ordenação e quantidade de resultados. */
-.post-type-archive-product .storefront-sorting {
+.compia-catalogo .storefront-sorting {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -49,14 +67,83 @@ body {
     margin-bottom: 2rem;
 }
 
-.post-type-archive-product .woocommerce-ordering,
-.post-type-archive-product .woocommerce-result-count {
+.compia-catalogo .woocommerce-ordering,
+.compia-catalogo .woocommerce-result-count {
     float: none;
     margin: 0;
 }
 
+/* Dropdown de ordenação: reaproveita a linguagem dos selects do checkout. */
+.compia-catalogo .woocommerce-ordering select {
+    min-height: 3rem;
+
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.375rem;
+}
+
+.compia-catalogo .woocommerce-ordering select:focus {
+    border-color: var(--compia-cor-principal);
+    outline: 3px solid rgb(var(--compia-cor-principal-rgb) / 15%);
+}
+
+/* ==================================================
+   Filtro por categoria
+   ================================================== */
+
+.compia-catalogo .compia-filtro-categorias {
+    margin-bottom: 2rem;
+}
+
+/* flex-wrap deixa as pills quebrarem linha sozinhas no mobile. */
+.compia-catalogo .compia-filtro-categorias ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.compia-catalogo .compia-filtro-categorias__item {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+
+    color: var(--compia-cor-principal);
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease;
+}
+
+.compia-catalogo .compia-filtro-categorias__item:hover,
+.compia-catalogo .compia-filtro-categorias__item:focus-visible {
+    background-color: #eef2ff;
+    border-color: var(--compia-cor-principal);
+}
+
+.compia-catalogo .compia-filtro-categorias__item:focus-visible {
+    outline: 3px solid var(--compia-cor-destaque);
+    outline-offset: 3px;
+}
+
+/* Categoria atual: pill preenchida com a cor principal. */
+.compia-catalogo .compia-filtro-categorias__item.ativo {
+    color: #ffffff;
+    background-color: var(--compia-cor-principal);
+    border-color: var(--compia-cor-principal);
+}
+
 /* Grade dos produtos. */
-.post-type-archive-product ul.products {
+.compia-catalogo ul.products {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
@@ -64,13 +151,13 @@ body {
 }
 
 /* Remove os ajustes antigos de layout por float. */
-.post-type-archive-product ul.products::before,
-.post-type-archive-product ul.products::after {
+.compia-catalogo ul.products::before,
+.compia-catalogo ul.products::after {
     display: none;
 }
 
 /* Card de cada produto. */
-.post-type-archive-product ul.products li.product {
+.compia-catalogo ul.products li.product {
     float: none !important;
     width: auto !important;
     margin: 0 !important;
@@ -91,13 +178,13 @@ body {
         box-shadow 180ms ease;
 }
 
-.post-type-archive-product ul.products li.product:hover {
+.compia-catalogo ul.products li.product:hover {
     transform: translateY(-0.25rem);
     box-shadow: 0 0.75rem 1.5rem rgb(15 23 42 / 14%);
 }
 
 /* Faz a área do produto ocupar o card. */
-.post-type-archive-product
+.compia-catalogo
 ul.products
 li.product
 .woocommerce-LoopProduct-link {
@@ -110,7 +197,7 @@ li.product
 }
 
 /* Padroniza o espaço reservado para todas as capas. */
-.post-type-archive-product ul.products li.product img {
+.compia-catalogo ul.products li.product img {
     width: 100%;
     aspect-ratio: 3 / 4;
     margin: 0 0 1rem;
@@ -118,12 +205,12 @@ li.product
     object-fit: contain;
     object-position: center;
 
-    background-color: #f8fafc;
+    background-color: var(--compia-cor-fundo-suave);
     border-radius: 0.5rem;
 }
 
 /* Título do livro. */
-.post-type-archive-product
+.compia-catalogo
 ul.products
 li.product
 .woocommerce-loop-product__title {
@@ -137,7 +224,7 @@ li.product
 }
 
 /* Preço. */
-.post-type-archive-product ul.products li.product .price {
+.compia-catalogo ul.products li.product .price {
     margin-top: auto;
     margin-bottom: 0;
 
@@ -147,7 +234,7 @@ li.product
 }
 
 /* Botão de compra. */
-.post-type-archive-product ul.products li.product .button {
+.compia-catalogo ul.products li.product .button {
     width: 100%;
     margin-top: 1rem;
     padding: 0.8rem 1rem;
@@ -160,8 +247,8 @@ li.product
     font-weight: 600;
 }
 
-.post-type-archive-product ul.products li.product .button:hover,
-.post-type-archive-product ul.products li.product .button:focus {
+.compia-catalogo ul.products li.product .button:hover,
+.compia-catalogo ul.products li.product .button:focus {
     color: #ffffff;
     background-color: var(--compia-cor-destaque);
 }
@@ -170,40 +257,54 @@ li.product
  * O Storefront mostra ordenação e quantidade de resultados
  * novamente depois da lista. Esta regra esconde a repetição.
  */
-.post-type-archive-product ul.products + .storefront-sorting {
+.compia-catalogo ul.products + .storefront-sorting {
     display: none;
 }
 
 /* Tablet. */
 @media (max-width: 900px) {
-    .post-type-archive-product ul.products {
+    .compia-catalogo ul.products {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 /* Celular. */
 @media (max-width: 600px) {
-    .post-type-archive-product .storefront-sorting {
+    .compia-catalogo .storefront-sorting {
         align-items: stretch;
         flex-direction: column;
     }
 
-    .post-type-archive-product .woocommerce-ordering {
+    .compia-catalogo .woocommerce-ordering {
         width: 100%;
     }
 
-    .post-type-archive-product .woocommerce-ordering select {
+    .compia-catalogo .woocommerce-ordering select {
         width: 100%;
     }
 
-    .post-type-archive-product ul.products {
+    .compia-catalogo ul.products {
         grid-template-columns: 1fr;
         gap: 1.25rem;
     }
 }
 
-@media (max-width: 600px) {
-    body {
-        padding-bottom: 4.5rem;
+/* ==================================================
+   Navegação e breadcrumb
+   ================================================== */
+
+/*
+ * Menu do Storefront: fonte um pouco maior no desktop.
+ * Só a partir de 768px (breakpoint do tema) para não afetar o menu
+ * hambúrguer no mobile, que tem estilo próprio.
+ */
+@media (min-width: 768px) {
+    .main-navigation ul li a {
+        font-size: 1rem;
     }
+}
+
+/* Breadcrumb do WooCommerce: nativo é .875em; aumenta um pouco a leitura. */
+.woocommerce .woocommerce-breadcrumb {
+    font-size: 0.95rem;
 }

@@ -1,0 +1,272 @@
+/* Página de produto individual */
+
+/* ==================================================
+   Layout: galeria à esquerda, informações à direita
+   ================================================== */
+
+/*
+ * O Storefront posiciona galeria e resumo com float; o grid assume o layout e
+ * torna os floats inertes. Abas, upsells e relacionados ocupam a largura toda.
+ */
+.compia-produto div.product {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* Neutraliza o width/float/margin do Storefront; quem controla é o grid. */
+.compia-produto div.product .woocommerce-product-gallery,
+.compia-produto div.product .summary {
+    float: none;
+    width: auto;
+    margin: 0;
+}
+
+.compia-produto div.product .woocommerce-product-gallery {
+    grid-column: 1;
+}
+
+.compia-produto div.product .summary {
+    grid-column: 2;
+}
+
+.compia-produto div.product .woocommerce-tabs,
+.compia-produto div.product .up-sells,
+.compia-produto div.product .related {
+    grid-column: 1 / -1;
+}
+
+/* ==================================================
+   Galeria e selo de promoção
+   ================================================== */
+
+/* Moldura suave para as capas, na mesma linguagem dos cards do catálogo. */
+.compia-produto .woocommerce-product-gallery {
+    padding: 1rem;
+
+    background-color: var(--compia-cor-fundo-suave);
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+}
+
+.compia-produto .onsale {
+    padding: 0.35rem 0.85rem;
+
+    color: #ffffff;
+    background-color: var(--compia-cor-destaque);
+    border-radius: 999px;
+
+    font-weight: 700;
+}
+
+/* ==================================================
+   Resumo: título, preço e resumo curto
+   ================================================== */
+
+.compia-produto .product_title {
+    margin: 0 0 0.75rem;
+
+    color: var(--compia-cor-principal);
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.compia-produto .summary .price {
+    margin: 0 0 1.25rem;
+
+    color: var(--compia-cor-principal);
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.compia-produto .woocommerce-product-details__short-description {
+    margin-bottom: 1.5rem;
+
+    color: var(--compia-cor-texto);
+    line-height: 1.7;
+}
+
+/* ==================================================
+   Formulário de compra
+   ================================================== */
+
+/*
+ * Quantidade e botão lado a lado (empilham no mobile). O :not() preserva o
+ * layout nativo em tabela dos produtos agrupados/variáveis, caso existam.
+ */
+.compia-produto form.cart:not(.grouped_form):not(.variations_form) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Campo de quantidade: mesma linguagem dos inputs do checkout. */
+.compia-produto form.cart .quantity .qty {
+    width: 5rem;
+    min-height: 3rem;
+    padding: 0.5rem;
+
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.375rem;
+
+    text-align: center;
+}
+
+.compia-produto form.cart .quantity .qty:focus {
+    border-color: var(--compia-cor-principal);
+    outline: 3px solid rgb(var(--compia-cor-principal-rgb) / 15%);
+}
+
+/* Adicionar ao carrinho: cor sólida com hover em destaque, igual à loja. */
+.compia-produto form.cart .single_add_to_cart_button {
+    min-height: 3rem;
+    padding: 0.8rem 2rem;
+
+    color: #ffffff;
+    background-color: var(--compia-cor-principal);
+    border: 0;
+    border-radius: 0.5rem;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    transition:
+        background-color 180ms ease,
+        transform 180ms ease;
+}
+
+.compia-produto form.cart .single_add_to_cart_button:hover,
+.compia-produto form.cart .single_add_to_cart_button:focus {
+    background-color: var(--compia-cor-destaque);
+    transform: translateY(-2px);
+}
+
+.compia-produto form.cart .single_add_to_cart_button:focus-visible {
+    outline: 3px solid var(--compia-cor-destaque);
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   Meta do produto: SKU, categorias, tags
+   ================================================== */
+
+.compia-produto .product_meta {
+    padding-top: 1.25rem;
+
+    color: #64748b;
+    border-top: 1px solid #e5e7eb;
+
+    font-size: 0.9rem;
+}
+
+.compia-produto .product_meta a {
+    color: var(--compia-cor-principal);
+    text-decoration: none;
+}
+
+.compia-produto .product_meta a:hover,
+.compia-produto .product_meta a:focus {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+/* ==================================================
+   Abas: descrição / avaliações
+   ================================================== */
+
+.compia-produto .woocommerce-tabs ul.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 1.5rem;
+    padding: 0;
+
+    list-style: none;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Neutraliza os separadores decorativos que o Storefront desenha nas abas. */
+.compia-produto .woocommerce-tabs ul.tabs::before,
+.compia-produto .woocommerce-tabs ul.tabs li::before,
+.compia-produto .woocommerce-tabs ul.tabs li::after {
+    display: none;
+}
+
+.compia-produto .woocommerce-tabs ul.tabs li {
+    margin: 0;
+    padding: 0;
+
+    background: none;
+    border: 0;
+    border-radius: 0;
+}
+
+.compia-produto .woocommerce-tabs ul.tabs li a {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+
+    color: var(--compia-cor-texto);
+    border-bottom: 2px solid transparent;
+
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        color 180ms ease,
+        border-color 180ms ease;
+}
+
+.compia-produto .woocommerce-tabs ul.tabs li a:hover,
+.compia-produto .woocommerce-tabs ul.tabs li a:focus {
+    color: var(--compia-cor-principal);
+}
+
+/* Aba ativa: sublinhado na cor principal. */
+.compia-produto .woocommerce-tabs ul.tabs li.active a {
+    color: var(--compia-cor-principal);
+    border-bottom-color: var(--compia-cor-principal);
+}
+
+.compia-produto .woocommerce-tabs .panel {
+    color: var(--compia-cor-texto);
+    line-height: 1.7;
+}
+
+.compia-produto .woocommerce-tabs .panel h2 {
+    color: var(--compia-cor-principal);
+    font-weight: 700;
+}
+
+/* ==================================================
+   Responsividade
+   ================================================== */
+
+@media (max-width: 900px) {
+    .compia-produto div.product {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Em coluna única, galeria e resumo ocupam a linha inteira. */
+    .compia-produto div.product .woocommerce-product-gallery,
+    .compia-produto div.product .summary {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .compia-produto form.cart .quantity,
+    .compia-produto form.cart .quantity .qty {
+        width: 100%;
+    }
+
+    .compia-produto form.cart .single_add_to_cart_button {
+        width: 100%;
+    }
+}
