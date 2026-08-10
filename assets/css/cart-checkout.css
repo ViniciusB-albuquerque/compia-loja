@@ -1,0 +1,556 @@
+/* Carrinho e finalização */
+
+.woocommerce-cart #secondary,
+.woocommerce-checkout #secondary {
+    display: none;
+}
+
+/* Faz o conteúdo principal ocupar toda a largura disponível. */
+.woocommerce-cart #primary,
+.woocommerce-checkout #primary {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+}
+
+/* Fundo das páginas. */
+.woocommerce-cart .site-content,
+.woocommerce-checkout .site-content {
+    background:
+        radial-gradient(
+            circle at 85% 5%,
+            rgb(67 56 202 / 10%),
+            transparent 28rem
+        ),
+        linear-gradient(
+            180deg,
+            var(--compia-cor-fundo-suave) 0%,
+            #ffffff 42%
+        );
+}
+
+/* Títulos principais: Carrinho e Checkout. */
+.woocommerce-cart .entry-title,
+.woocommerce-checkout .entry-title {
+    margin-bottom: 2rem;
+    color: var(--compia-cor-principal);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+}
+
+/* ==================================================
+   Estrutura dos blocos do WooCommerce
+   ================================================== */
+
+.wc-block-cart,
+.wc-block-checkout {
+    width: 100%;
+    max-width: 75rem;
+    margin-inline: auto;
+}
+
+.wc-block-cart__main,
+.wc-block-cart__sidebar,
+.wc-block-checkout__main,
+.wc-block-checkout__sidebar,
+.wc-block-components-sidebar {
+    background-color: rgb(255 255 255 / 96%);
+    border: 1px solid #dbeafe;
+    border-radius: 0.75rem;
+    box-shadow:
+        0 0.75rem 2rem rgb(15 23 42 / 8%),
+        0 0 0 1px rgb(67 56 202 / 4%);
+    backdrop-filter: blur(2px);
+}
+
+.wc-block-cart__main,
+.wc-block-checkout__main {
+    padding: 1.5rem;
+}
+
+.wc-block-cart__sidebar,
+.wc-block-checkout__sidebar,
+.wc-block-components-sidebar {
+    padding: 1.5rem !important;
+}
+
+/* ==================================================
+   Cabeçalhos e títulos internos
+   ================================================== */
+
+/* Cabeçalho com as colunas PRODUTO e TOTAL. */
+.wc-block-cart-items__header {
+    margin-bottom: 1rem;
+    padding: 0.85rem 1rem;
+
+    background: linear-gradient(
+        90deg,
+        #eef2ff,
+        var(--compia-cor-fundo-suave)
+    );
+    border: 1px solid #dbeafe;
+    border-radius: 0.5rem;
+}
+
+.wc-block-cart-items__header-product,
+.wc-block-cart-items__header-total {
+    color: var(--compia-cor-principal) !important;
+    font-size: 0.82rem;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em;
+}
+
+/* Título TOTAL NO CARRINHO e demais títulos das laterais. */
+.wc-block-cart__totals-title,
+.wc-block-components-sidebar .wc-block-components-title,
+.wc-block-cart__sidebar .wc-block-components-title,
+.wc-block-checkout__sidebar .wc-block-components-title,
+.wc-block-components-sidebar h2,
+.wc-block-cart__sidebar h2,
+.wc-block-checkout__sidebar h2 {
+    position: relative;
+    margin: 0 0 1rem;
+    /* !important vence o padding nativo do WooCommerce (.wc-block-cart__totals-title
+       e .wc-block-components-title.wc-block-components-title), que zera o padding-left
+       e joga o texto sob a barra decorativa. */
+    padding: 0 0 0.9rem 0.85rem !important;
+
+    color: var(--compia-cor-principal);
+    border-bottom: 1px solid #dbeafe;
+
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 0.06em;
+}
+
+/* Barra de destaque tecnológico ao lado dos títulos. */
+.wc-block-cart__totals-title::before,
+.wc-block-components-sidebar .wc-block-components-title::before,
+.wc-block-cart__sidebar .wc-block-components-title::before,
+.wc-block-checkout__sidebar .wc-block-components-title::before,
+.wc-block-components-sidebar h2::before,
+.wc-block-cart__sidebar h2::before,
+.wc-block-checkout__sidebar h2::before {
+    position: absolute;
+    top: 0.1rem;
+    bottom: 0.95rem;
+    left: 0;
+
+    width: 0.25rem;
+
+    content: "";
+    background: linear-gradient(
+        180deg,
+        var(--compia-cor-principal),
+        var(--compia-cor-principal-escuro)
+    );
+    border-radius: 999px;
+}
+
+/* Títulos das seções do checkout. */
+.wc-block-checkout h2,
+.wc-block-checkout h3,
+.wc-block-cart h2,
+.wc-block-cart h3 {
+    color: var(--compia-cor-principal);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+/* ==================================================
+   Produtos do carrinho
+   ================================================== */
+
+.wc-block-cart-items {
+    margin: 0;
+}
+
+.wc-block-cart-items__row {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.wc-block-cart-item__image img {
+    width: 5rem;
+    height: 7rem;
+
+    object-fit: contain;
+
+    background-color: var(--compia-cor-fundo-suave);
+    border-radius: 0.375rem;
+}
+
+.wc-block-components-product-name {
+    color: var(--compia-cor-texto);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.wc-block-components-product-name:hover,
+.wc-block-components-product-name:focus {
+    color: var(--compia-cor-principal);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+/* Controle de quantidade. */
+.wc-block-components-quantity-selector {
+    border: 1px solid #cbd5e1;
+    border-radius: 0.375rem;
+}
+
+.wc-block-components-quantity-selector input {
+    min-width: 2.5rem;
+}
+
+/* ==================================================
+   Totais do pedido
+   ================================================== */
+
+.wc-block-components-totals-wrapper {
+    border-top-color: #e5e7eb;
+}
+
+.wc-block-components-totals-item__label,
+.wc-block-components-totals-footer-item
+    .wc-block-components-totals-item__value {
+    color: var(--compia-cor-principal);
+    font-weight: 700;
+}
+
+.wc-block-components-totals-footer-item {
+    color: var(--compia-cor-principal);
+}
+
+.wc-block-components-totals-footer-item
+    .wc-block-components-totals-item__value {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+/* ==================================================
+   Campos do checkout
+   ================================================== */
+
+.wc-block-components-text-input input,
+.wc-block-components-combobox-control input,
+.woocommerce-checkout input.input-text,
+.woocommerce-checkout textarea,
+.woocommerce-checkout select {
+    width: 100%;
+    min-height: 3rem;
+
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.375rem;
+}
+
+.wc-block-components-text-input input:focus,
+.wc-block-components-combobox-control input:focus,
+.woocommerce-checkout input.input-text:focus,
+.woocommerce-checkout textarea:focus,
+.woocommerce-checkout select:focus {
+    border-color: var(--compia-cor-principal);
+    outline: 3px solid rgb(var(--compia-cor-principal-rgb) / 15%);
+}
+
+/* Nativo separa os campos com margin-top:12px; aumenta o respiro vertical.
+   Usa margin-top (não margin-bottom) para não somar ao valor nativo e para
+   preservar o reset :first-child do WooCommerce. */
+.wc-block-checkout .wc-block-components-text-input {
+    margin-top: 1rem;
+}
+
+/* País é combobox (classe própria) e o nativo zera seu margin-top no checkout-step;
+   usamos especificidade maior que essa regra para reaplicar o mesmo respiro das
+   demais linhas, sem !important. */
+.wc-block-checkout
+    .wc-block-components-form
+    .wc-block-components-checkout-step
+    .wc-block-components-country-input {
+    margin-top: 1rem;
+}
+
+/* ==================================================
+   Opções de entrega e pagamento
+   ================================================== */
+
+/*
+ * Estrutura esperada do bloco:
+ * opção = radio + layout;
+ * layout = nome do método + preço.
+ *
+ * O Grid evita que "Taxa fixa" seja comprimido ou fique sobreposto.
+ */
+.wc-block-components-radio-control__option {
+    display: grid !important;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    align-items: center;
+    column-gap: 1rem;
+
+    min-height: 4rem;
+    margin-bottom: 0.75rem;
+    padding: 1rem 1.25rem !important;
+
+    background-color: var(--compia-cor-fundo-suave);
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.wc-block-components-radio-control__option:hover {
+    background-color: #eff6ff;
+    border-color: var(--compia-cor-principal);
+}
+
+.wc-block-components-radio-control__option:focus-within {
+    border-color: var(--compia-cor-principal);
+    box-shadow: 0 0 0 3px rgb(var(--compia-cor-principal-rgb) / 14%);
+}
+
+.wc-block-components-radio-control__input {
+    position: relative !important;
+    grid-column: 1;
+
+    margin: 0 !important;
+
+    transform: none !important;
+    justify-self: start;
+
+    /* Zera o left/top nativos (16px), que só faziam sentido com position:absolute. */
+    left: 0 !important;
+    top: 0 !important;
+}
+
+/*
+ * O layout interno ocupa toda a segunda coluna e distribui:
+ * nome à esquerda e preço à direita.
+ */
+.wc-block-components-radio-control__option-layout {
+    display: grid !important;
+    grid-column: 2;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 1rem;
+
+    width: 100%;
+    min-width: 0;
+    padding: 0 !important;
+}
+
+/* Alguns blocos usam o próprio label como contêiner. */
+.wc-block-components-radio-control__label {
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: var(--compia-cor-texto);
+    font-weight: 600;
+    line-height: 1.35;
+    white-space: normal;
+}
+
+.wc-block-components-radio-control__label-group {
+    min-width: 0;
+}
+
+.wc-block-components-radio-control__secondary-label,
+.wc-block-components-radio-control__description-group,
+.wc-block-components-radio-control__option
+    .wc-block-formatted-money-amount {
+    margin: 0;
+    color: var(--compia-cor-principal);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* ==================================================
+   Botões principais
+   ================================================== */
+
+/*
+ * O WooCommerce aplica estilos com alta especificidade nos blocos.
+ * O !important fica restrito aos botões principais para preservar
+ * a identidade visual da COMPIA.
+ */
+a.wc-block-cart__submit-button,
+.wc-block-components-checkout-place-order-button:not(:disabled),
+.woocommerce-cart .checkout-button,
+.woocommerce-checkout #place_order:not(:disabled) {
+    min-height: 3rem;
+    padding: 0.75rem 1.25rem;
+
+    color: #ffffff !important;
+    background: linear-gradient(
+        135deg,
+        var(--compia-cor-principal),
+        var(--compia-cor-principal-escuro)
+    ) !important;
+
+    border: 0;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.5rem 1.25rem rgb(67 56 202 / 25%);
+
+    font-weight: 700;
+    text-decoration: none !important;
+    cursor: pointer;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+a.wc-block-cart__submit-button,
+a.wc-block-cart__submit-button span,
+.wc-block-components-checkout-place-order-button span,
+.woocommerce-cart .checkout-button,
+.woocommerce-checkout #place_order {
+    text-decoration: none !important;
+}
+
+a.wc-block-cart__submit-button:hover,
+a.wc-block-cart__submit-button:focus,
+.wc-block-components-checkout-place-order-button:not(:disabled):hover,
+.wc-block-components-checkout-place-order-button:not(:disabled):focus,
+.woocommerce-cart .checkout-button:hover,
+.woocommerce-cart .checkout-button:focus,
+.woocommerce-checkout #place_order:not(:disabled):hover,
+.woocommerce-checkout #place_order:not(:disabled):focus {
+    color: #ffffff !important;
+    background: linear-gradient(
+        135deg,
+        var(--compia-cor-principal-escuro),
+        var(--compia-cor-principal)
+    ) !important;
+
+    box-shadow: 0 0.75rem 1.75rem rgb(67 56 202 / 35%);
+    transform: translateY(-2px);
+    text-decoration: none !important;
+}
+
+/* Botões secundários mantêm aparência simples. */
+.woocommerce-cart .button:not(.checkout-button),
+.woocommerce-checkout .button:not(#place_order) {
+    min-height: 2.75rem;
+    padding: 0.7rem 1rem;
+
+    color: var(--compia-cor-principal);
+    background-color: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 0.5rem;
+
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.woocommerce-cart .button:not(.checkout-button):hover,
+.woocommerce-cart .button:not(.checkout-button):focus,
+.woocommerce-checkout .button:not(#place_order):hover,
+.woocommerce-checkout .button:not(#place_order):focus {
+    color: #ffffff;
+    background-color: var(--compia-cor-principal);
+    border-color: var(--compia-cor-principal);
+}
+
+/* Estado de foco acessível. */
+.wc-block-components-button:focus-visible,
+.woocommerce-cart .button:focus-visible,
+.woocommerce-checkout .button:focus-visible {
+    outline: 3px solid var(--compia-cor-destaque);
+    outline-offset: 3px;
+}
+
+/* Estado indisponível: não deve parecer clicável. */
+.wc-block-components-button:disabled,
+.wc-block-components-checkout-place-order-button:disabled,
+.woocommerce-checkout #place_order:disabled {
+    color: #64748b !important;
+    background: #cbd5e1 !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ==================================================
+   Mensagens do WooCommerce
+   ================================================== */
+
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+}
+
+.woocommerce-message {
+    background-color: #f0fdf4;
+    border-top-color: #15803d;
+}
+
+.woocommerce-info {
+    background-color: #eff6ff;
+    border-top-color: var(--compia-cor-principal);
+}
+
+.woocommerce-error {
+    background-color: #fef2f2;
+    border-top-color: #b91c1c;
+}
+
+/* ==================================================
+   Responsividade
+   ================================================== */
+
+@media (max-width: 900px) {
+    .wc-block-cart,
+    .wc-block-checkout {
+        display: block;
+    }
+
+    .wc-block-cart__main,
+    .wc-block-checkout__main {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .wc-block-cart__main,
+    .wc-block-cart__sidebar,
+    .wc-block-checkout__main,
+    .wc-block-checkout__sidebar,
+    .wc-block-components-sidebar {
+        padding: 1rem !important;
+    }
+
+    .wc-block-cart-item__image img {
+        width: 4rem;
+        height: 5.5rem;
+    }
+
+    a.wc-block-cart__submit-button,
+    .wc-block-components-checkout-place-order-button,
+    .woocommerce-cart .checkout-button,
+    .woocommerce-checkout #place_order {
+        width: 100%;
+    }
+
+    .wc-block-cart-items__header {
+        padding-inline: 0.75rem;
+    }
+
+    .wc-block-components-radio-control__option {
+        grid-template-columns: 1.15rem minmax(0, 1fr);
+        column-gap: 0.75rem;
+        padding: 0.9rem !important;
+    }
+
+    .wc-block-components-radio-control__option-layout {
+        column-gap: 0.6rem;
+    }
+}
