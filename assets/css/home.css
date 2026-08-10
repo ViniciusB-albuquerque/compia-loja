@@ -1,0 +1,189 @@
+/* Página inicial */
+
+/* ==================================================
+   Hero
+   ================================================== */
+
+.compia-home__hero {
+    margin-bottom: 3rem;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
+
+    /* Mesma linguagem de gradiente dos botões principais do checkout,
+       agora como fundo do hero, com um brilho quente da cor de destaque. */
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            rgb(245 158 11 / 18%),
+            transparent 22rem
+        ),
+        linear-gradient(
+            135deg,
+            var(--compia-cor-principal),
+            var(--compia-cor-principal-escuro)
+        );
+    border-radius: 1rem;
+    box-shadow: 0 0.75rem 2rem rgb(15 23 42 / 18%);
+
+    color: #ffffff;
+    text-align: center;
+}
+
+.compia-home__hero-conteudo {
+    max-width: 46rem;
+    margin-inline: auto;
+}
+
+.compia-home__titulo {
+    margin: 0 0 0.75rem;
+
+    color: #ffffff;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+.compia-home__tagline {
+    margin: 0 0 1.25rem;
+
+    color: rgb(255 255 255 / 85%);
+    font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+    font-weight: 600;
+}
+
+.compia-home__apresentacao {
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+
+    color: rgb(255 255 255 / 82%);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.compia-home__cta {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+
+    color: var(--compia-cor-principal);
+    background-color: #ffffff;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.5rem 1.25rem rgb(15 23 42 / 25%);
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        background-color 180ms ease,
+        color 180ms ease;
+}
+
+.compia-home__cta:hover,
+.compia-home__cta:focus-visible {
+    color: #ffffff;
+    background-color: var(--compia-cor-destaque);
+    box-shadow: 0 0.75rem 1.75rem rgb(15 23 42 / 30%);
+    transform: translateY(-2px);
+}
+
+.compia-home__cta:focus-visible {
+    outline: 3px solid var(--compia-cor-destaque);
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   Seções
+   ================================================== */
+
+.compia-home__secao {
+    margin-bottom: 3rem;
+}
+
+.compia-home__secao-titulo {
+    margin: 0 0 1.5rem;
+
+    color: var(--compia-cor-principal);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* ==================================================
+   Cards de categoria
+   ================================================== */
+
+.compia-home__categorias {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+/* Reaproveita border-radius/sombra/transição dos cards de produto do catálogo. */
+.compia-home__categoria {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.25rem 0.75rem rgb(15 23 42 / 8%);
+
+    color: var(--compia-cor-texto);
+    text-decoration: none;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.compia-home__categoria:hover,
+.compia-home__categoria:focus-visible {
+    border-color: var(--compia-cor-principal);
+    box-shadow: 0 0.75rem 1.5rem rgb(15 23 42 / 14%);
+    transform: translateY(-0.25rem);
+}
+
+.compia-home__categoria:focus-visible {
+    outline: 3px solid var(--compia-cor-destaque);
+    outline-offset: 3px;
+}
+
+.compia-home__categoria-titulo {
+    margin: 0 0 0.5rem;
+
+    color: var(--compia-cor-principal);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.compia-home__categoria-texto {
+    margin: 0;
+
+    color: var(--compia-cor-texto);
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+/* ==================================================
+   Responsividade
+   ================================================== */
+
+@media (max-width: 900px) {
+    .compia-home__categorias {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .compia-home__hero {
+        text-align: left;
+    }
+
+    .compia-home__categorias {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
